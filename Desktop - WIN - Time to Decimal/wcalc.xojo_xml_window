@@ -295,30 +295,48 @@
    <ItemSource>
     <TextEncoding>134217984</TextEncoding>
     <SourceLine>Sub Pressed()</SourceLine>
-    <SourceLine>If t_decimal.Text = "" Then</SourceLine>
-    <SourceLine>t_decimal.Text = "0"</SourceLine>
-    <SourceLine>t_minutes.Text = "0"</SourceLine>
-    <SourceLine>t_hours.Text = "0"</SourceLine>
-    <SourceLine>End If</SourceLine>
+    <SourceLine>// If t_decimal.Text = "" Then</SourceLine>
+    <SourceLine>// t_decimal.Text = "0"</SourceLine>
+    <SourceLine>// t_minutes.Text = "0"</SourceLine>
+    <SourceLine>// t_hours.Text = "0"</SourceLine>
+    <SourceLine>// End If</SourceLine>
+    <SourceLine>// </SourceLine>
+    <SourceLine>// Var c_decimal As Double</SourceLine>
+    <SourceLine>// Var c_hours As Integer</SourceLine>
+    <SourceLine>// Var c_minutes As Double</SourceLine>
+    <SourceLine>// </SourceLine>
+    <SourceLine>// c_hours = 0</SourceLine>
+    <SourceLine>// c_minutes = 0</SourceLine>
+    <SourceLine>// </SourceLine>
+    <SourceLine>// c_decimal = Val(t_decimal.Text)</SourceLine>
+    <SourceLine>// </SourceLine>
+    <SourceLine>// While c_decimal &gt;= 1</SourceLine>
+    <SourceLine>// c_hours = c_hours + 1</SourceLine>
+    <SourceLine>// c_decimal = c_decimal - 1</SourceLine>
+    <SourceLine>// Wend</SourceLine>
+    <SourceLine>// </SourceLine>
+    <SourceLine>// c_minutes = c_decimal * 60</SourceLine>
+    <SourceLine>// </SourceLine>
+    <SourceLine>// t_hours.Text = Str(c_hours)</SourceLine>
+    <SourceLine>// t_minutes.Text = c_minutes.ToString(Locale.Current, "###.#")</SourceLine>
     <SourceLine></SourceLine>
-    <SourceLine>Var c_decimal As Double</SourceLine>
-    <SourceLine>Var c_hours As Integer</SourceLine>
-    <SourceLine>Var c_minutes As Double</SourceLine>
-    <SourceLine></SourceLine>
-    <SourceLine>c_hours = 0</SourceLine>
-    <SourceLine>c_minutes = 0</SourceLine>
-    <SourceLine></SourceLine>
-    <SourceLine>c_decimal = Val(t_decimal.Text)</SourceLine>
-    <SourceLine></SourceLine>
-    <SourceLine>While c_decimal &gt;= 1</SourceLine>
-    <SourceLine>c_hours = c_hours + 1</SourceLine>
-    <SourceLine>c_decimal = c_decimal - 1</SourceLine>
-    <SourceLine>Wend</SourceLine>
-    <SourceLine></SourceLine>
-    <SourceLine>c_minutes = c_decimal * 60</SourceLine>
+    <SourceLine>Var decimalTime As Double = t_decimal.Text.ToDouble</SourceLine>
+    <SourceLine>Var c_hours As Integer = Floor( decimalTime )</SourceLine>
+    <SourceLine>Var c_minutes As Double = 60 * (decimalTime - c_hours)</SourceLine>
     <SourceLine></SourceLine>
     <SourceLine>t_hours.Text = Str(c_hours)</SourceLine>
-    <SourceLine>t_minutes.Text = c_minutes.ToString(Locale.Current, "###.#")</SourceLine>
+    <SourceLine>t_minutes.Text = Str(c_minutes)</SourceLine>
+    <SourceLine></SourceLine>
+    <SourceLine>// Much appreciation to Anthony G. Cyphers, a pro Xojo developer </SourceLine>
+    <SourceLine>// for this elegant alternative to my original code.</SourceLine>
+    <SourceLine></SourceLine>
+    <SourceLine>// Floor() gives you the whole number out of a Double. </SourceLine>
+    <SourceLine>// Subtract it from the entire amount to get the post-decimal.</SourceLine>
+    <SourceLine></SourceLine>
+    <SourceLine>// Typecasting the whole number AND the minutes Var as Double ensures accuracy.</SourceLine>
+    <SourceLine>// A-B test w/ Integer &amp; Double using 2.3 decimal to Hrs-Mins = 1 min shortage.</SourceLine>
+    <SourceLine></SourceLine>
+    <SourceLine>// June 2, 2023.</SourceLine>
     <SourceLine>End Sub</SourceLine>
    </ItemSource>
   </HookInstance>
